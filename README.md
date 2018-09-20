@@ -11,7 +11,7 @@ source activate tensorflow
 
 To run the project.
 ```
-python homo_cgan_tensorflow.y
+python homophone_cgan_tensorflow.y
 ```
 
 To deactivate Tensorflow in the anaconda environment.
