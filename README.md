@@ -4,6 +4,6 @@ To train the project use anaconda2 on a CUDA 9.0 enabled machine using Tensorflo
 (https://www.tensorflow.org/install/install_linux#tensorflow_gpu_support)
 
 Run the command to activate Tensorflow in the anaconda environment.
-'''
+```
 source activate tensorflow
-'''
+```
