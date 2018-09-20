@@ -4,7 +4,17 @@ To train the project use anaconda2 on a CUDA 9.0 enabled machine using Tensorflo
 
 [How to setup TensorFlow with GPU support](https://www.tensorflow.org/install/install_linux#tensorflow_gpu_support)
 
-Run the command to activate Tensorflow in the anaconda environment.
+To activate Tensorflow in the anaconda environment.
 ```
 source activate tensorflow
+```
+
+To run the project.
+```
+python homo_cgan_tensorflow.y
+```
+
+To deactivate Tensorflow in the anaconda environment.
+```
+source deactivate tensorflow
 ```
