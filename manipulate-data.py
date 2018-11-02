@@ -1,5 +1,5 @@
 import pandas
-df = pandas.read_csv('data-dict.txt', encoding='utf-16-le')
+df = pandas.read_csv('data-dict.txt', encoding='utf-16-le', low_memory=False)
 for index, row in df.iterrows():
     if not isinstance(row[2], (str, unicode)):
         print (row[0])
