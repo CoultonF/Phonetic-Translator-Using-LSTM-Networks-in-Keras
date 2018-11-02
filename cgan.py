@@ -2,21 +2,6 @@ import pandas
 import tensorflow as tf
 from pandas import *
 import string
-widx = 0
-fields = ['word', 'ipa']
-words = []
-IPA = []
-df = pandas.read_csv('name-words.txt', encoding='utf-16-le', usecols=fields)
-
-for x in df.word:
-    words.append(x)
-
-
-for y in df.ipa:
-    IPA.append(y)
-
-print(words[widx])
-print(IPA[widx])
 
 def unique(list1):
 
@@ -35,13 +20,33 @@ def unique(list1):
         print x,
     return unique_list
 
+widx = 0
+
+
+
+
+fields = ['word', 'ipa']
+words = []
+ipa = []
+df = pandas.read_csv('name-words.txt', encoding='utf-16-le', usecols=fields)
+
+for x in df.word:
+    words.append(x)
+
+
+for y in df.ipa:
+    ipa.append(y)
+#
+# print(words[widx])
+# print(ipa[widx])
+
+
 
 alpha_chars = unique(words)
-print('\n')
-ipa_chars = unique(IPA)
-print('\n')
-print len(alpha_chars)
-print len(ipa_chars)
+ipa_chars = unique(ipa)
+# print('\n')
+# print len(alpha_chars)
+# print len(ipa_chars)
 
 
 def string_vectorizer(str_input, alphabet):
@@ -49,8 +54,24 @@ def string_vectorizer(str_input, alphabet):
                   for symbol in str_input]
     return vector
 
-print(string_vectorizer(words[widx], alpha_chars))
-print(string_vectorizer(IPA[widx], ipa_chars))
+
+# x_train and y_train data structure
+# [ [
+#  [0,0,0,. . . 0,0,0],
+#   . . .
+#   [0,0,0,. . . 0,0,0]
+# ],
+# [
+#  [0,0,0,. . . 0,0,0],
+#  . . .
+#  [0,0,0,. . . 0,0,0]
+# ] ]
+x_train = []
+for x in range(len(words)):
+    x_train.append(string_vectorizer(words[x], alpha_chars))
+y_train = []
+for y in range(len(ipa)):
+    y_train.append(string_vectorizer(ipa[y], ipa_chars))
 
 X = tf.placeholder(dtype=tf.float32, shape=[None, len(alpha_chars)])
 Y = tf.placeholder(dtype=tf.float32, shape=[None, len(ipa_chars)])
