@@ -141,8 +141,8 @@ lr = tf.train.exponential_decay(0.0002, global_step, 500, 0.95, staircase=True)
 train_words = []
 train_ipa = []
 fields = ['word', 'ipa']
-train_df = pandas.read_csv('non-name-words.txt', encoding='utf-16-le', usecols=fields)
-test_df = pandas.read_csv('name-words.txt', encoding='utf-16-le', usecols=fields)
+train_df = pandas.read_csv('data/non-name-words.txt', encoding='utf-16-le', usecols=fields)
+test_df = pandas.read_csv('data/name-words.txt', encoding='utf-16-le', usecols=fields)
 
 chars = list(set("".join(train_df.word)))
 idx_to_char = {ix:char for ix, char in enumerate(chars)}
