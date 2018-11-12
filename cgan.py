@@ -2,6 +2,7 @@ from __future__ import print_function
 import pandas
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 import numpy as np
 import matplotlib.pyplot as plt
 import os, time, itertools, imageio, pickle, random, string
@@ -278,6 +279,8 @@ sess.close()
 =======
 =======
 >>>>>>> d8392c661f5b8dca2427b3a5dec7cdd2212d3320
+=======
+>>>>>>> d8392c661f5b8dca2427b3a5dec7cdd2212d3320
 import tensorflow as tf
 from pandas import *
 import string
@@ -354,6 +357,9 @@ for y in range(len(test_ipa)):
 X = tf.placeholder(dtype=tf.float32, shape=[None, len(train_alpha_chars)])
 Y = tf.placeholder(dtype=tf.float32, shape=[None, len(train_ipa_chars)])
 <<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> d8392c661f5b8dca2427b3a5dec7cdd2212d3320
+=======
 >>>>>>> d8392c661f5b8dca2427b3a5dec7cdd2212d3320
 =======
 >>>>>>> d8392c661f5b8dca2427b3a5dec7cdd2212d3320
