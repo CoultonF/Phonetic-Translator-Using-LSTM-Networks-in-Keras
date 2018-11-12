@@ -20,3 +20,5 @@ source deactivate tf_gpu
 ```
 
 [*Modeled from a previous implementation of a CDCGAN using MNIST data.*](https://github.com/znxlwm/tensorflow-MNIST-GAN-DCGAN)
+
+Training environment: GTX 1070, 1920 CUDA cores
