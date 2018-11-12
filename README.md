@@ -18,3 +18,5 @@ To deactivate Tensorflow in the anaconda environment.
 ```
 source deactivate tf_gpu
 ```
+
+[https://github.com/znxlwm/tensorflow-MNIST-GAN-DCGAN](*Modeled off of a previous implementation of a CDCGAN using MNIST data.*)
