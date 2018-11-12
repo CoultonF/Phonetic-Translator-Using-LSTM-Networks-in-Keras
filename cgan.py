@@ -64,18 +64,6 @@ def discriminator(x, y_fill, isTrain=True, reuse=False):
 
         return o, conv3
 
-
-def unique(list1):
-    # intilize a null list
-    unique_list = []
-    # traverse for all elements
-    for word in list1:
-        # check if exists in unique_list or not
-        for letter in word:
-            if letter not in unique_list:
-                unique_list.append(letter)
-    return unique_list
-
 def one_hot_enc(dataframe, _to_idx):
     vector = np.zeros((len(dataframe), dataframe.str.len().max(), len(_to_idx),1))
     for idx,x in enumerate(dataframe):
@@ -156,6 +144,7 @@ test_df = pandas.read_csv('name-words.txt', encoding='utf-16-le', usecols=fields
 chars = list(set("".join(train_df.word)))
 idx_to_char = {ix:char for ix, char in enumerate(chars)}
 char_to_idx = {char:ix for ix, char in enumerate(chars)}
+
 chars = list(set("".join(train_df.ipa)))
 idx_to_ipa = {ix:char for ix, char in enumerate(chars)}
 ipa_to_idx = {char:ix for ix, char in enumerate(chars)}
@@ -164,56 +153,11 @@ print("Character Vocab")
 print (idx_to_char)
 print("IPA Vocab")
 print (idx_to_ipa)
-# create empty word vectors
-# word_vector = np.zeros((len(train_df.word), train_df.word.str.len().max(), len(char_to_idx),1))
-# print(word_vector.shape)
-# for idx,x in enumerate(train_df.word):
-#     indices = []
-#     for l in x:
-#         indices.append(char_to_idx[l])
-#     word_vector[idx, np.arange(len(x)), indices] = 1
-# # create empty ipa vectors
-# ipa_vector = np.zeros((len(train_df.ipa), train_df.ipa.str.len().max(), len(ipa_to_idx),1))
-# print(ipa_vector.shape)
-# for idx,x in enumerate(train_df.ipa):
-#     indices = []
-#     for l in x:
-#         indices.append(ipa_to_idx[l])
-#     ipa_vector[idx, np.arange(len(x)), indices] = 1
 
 x_train = one_hot_enc(train_df.ipa, ipa_to_idx)
 y_train = one_hot_enc(train_df.word, char_to_idx)
 x_test = one_hot_enc(test_df.ipa, ipa_to_idx)
 y_test = one_hot_enc(test_df.word, char_to_idx)
-
-print(x_train.shape)
-print(y_train.shape)
-print(x_test.shape)
-print(y_test.shape)
-
-# x_train and y_train data structure
-# [ [
-#  [[0],[0],[0],. . . [0],[0],[0]],
-#   . . .
-#   [[0],[0],[0],. . . [0],[0],[0]]
-# ],
-# [
-#  [[0],[0],[0],. . . [0],[0],[0]],
-#  . . .
-#  [[0],[0],[0],. . . [0],[0],[0]]
-# ] ]
-# y_train =[]
-# for y in range(len(train_words)):
-#     y_train.append(string_vectorizer(train_words[y], train_alpha_chars))
-# x_train = []
-# for x in range(len(train_ipa)):
-#     x_train.append(string_vectorizer(train_ipa[x], train_ipa_chars))
-# y_test = []
-# for y in range(len(test_words)):
-#     y_test.append(string_vectorizer(test_words[y], train_alpha_chars))
-# x_test = []
-# for x in range(len(test_ipa)):
-#     x_test.append(string_vectorizer(test_ipa[x], train_ipa_chars))
 
 x = tf.placeholder(tf.float32, shape=(None, None, 35, 1))
 z = tf.placeholder(tf.float32, shape=(None, None, 1, 100))
@@ -223,16 +167,9 @@ isTrain = tf.placeholder(dtype=tf.bool)
 
 # networks : generator
 G_z = generator(z, y_label, isTrain)
-print("G_z")
-
-print(G_z)
-print(x)
-print(y_fill)
 
 D_real, D_real_logits = discriminator(x, y_fill, isTrain)
 D_fake, D_fake_logits = discriminator(G_z, y_fill, isTrain, reuse=True)
-
-print(D_real_logits)
 
 # loss for each network
 D_loss_real = tf.reduce_mean(tf.nn.sigmoid_cross_entropy_with_logits(logits=D_real_logits, labels=tf.ones([batch_size, 1, 1, 1])))
@@ -283,7 +220,6 @@ for epoch in range(train_epoch):
     G_losses = []
     D_losses = []
     epoch_start_time = time.time()
-    print(len(train_set))
     shuffle_idxs = random.sample(range(0, len(train_set)), len(train_set))
     shuffled_set = train_set[shuffle_idxs]
     shuffled_label = train_label[shuffle_idxs]
