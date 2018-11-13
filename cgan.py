@@ -21,23 +21,35 @@ def generator(x, y_label, isTrain=True, reuse=False):
 
         # concat layer
         cat1 = tf.concat([x, y_label], 3)
-
+        print(cat1.shape)
+        print('x:')
+        print(x.shape)
+        print('y_label:')
+        print(y_label.shape)
+        print('cat1')
+        print(cat1.shape)
+        # ?,28,28,101
         # 1st hidden layer
-        deconv1 = tf.layers.conv2d_transpose(cat1, 256, [5, 5], strides=(1, 1), padding='valid', kernel_initializer=w_init, bias_initializer=b_init)
-
+        deconv1 = tf.layers.conv2d_transpose(cat1, 34, [5, 15], strides=(2, 2), padding='valid', kernel_initializer=w_init, bias_initializer=b_init)
         lrelu1 = lrelu(tf.layers.batch_normalization(deconv1, training=isTrain), 0.2)
-
-
+        print('relu1')
+        print(lrelu1.shape)
+        # ?,34,34,256
         # 2nd hidden layer
-        deconv2 = tf.layers.conv2d_transpose(lrelu1, 128, [5, 5], strides=(1, 1), padding='same', kernel_initializer=w_init, bias_initializer=b_init)
+        pool1 = tf.layers.max_pooling2d(inputs=lrelu1, pool_size=[2, 1], strides=2)
 
+        deconv2 = tf.layers.conv2d_transpose(pool1, 32, [5, 15], strides=(2, 2), padding='same', kernel_initializer=w_init, bias_initializer=b_init)
         lrelu2 = lrelu(tf.layers.batch_normalization(deconv2, training=isTrain), 0.2)
+        print('relu1')
+        print(lrelu2.shape)
 
-
+        pool2 = tf.layers.max_pooling2d(inputs=lrelu2, pool_size=[2, 1], strides=2)
         # output layer
-        deconv3 = tf.layers.conv2d_transpose(lrelu2, 1, [21, 21], strides=(7, 7), padding='same', kernel_initializer=w_init, bias_initializer=b_init)
-
+        deconv3 = tf.layers.conv2d_transpose(pool2, 1, [7, 15], strides=(1, 1), padding='same', kernel_initializer=w_init, bias_initializer=b_init)
+        print('relu1')
+        print(deconv3.shape)
         o = tf.nn.tanh(deconv3)
+        #
         return o
 
 # D(x)
@@ -49,19 +61,25 @@ def discriminator(x, y_fill, isTrain=True, reuse=False):
 
         # concat layer
         cat1 = tf.concat([x, y_fill], 3)
-
+        print('cat1')
+        print(cat1.shape)
         # 1st hidden layer
-        conv1 = tf.layers.conv2d(cat1, 128, [21, 21], strides=(7, 7), padding='same', kernel_initializer=w_init, bias_initializer=b_init)
+        conv1 = tf.layers.conv2d(cat1, 34, [2, 8], strides=(1, 1), padding='same', kernel_initializer=w_init, bias_initializer=b_init)
         lrelu1 = lrelu(conv1, 0.2)
-
+        print('conv1')
+        print(conv1.shape)
+        # pool1 = tf.layers.max_pooling2d(inputs=lrelu1, pool_size=[2, 1], strides=2)
         # 2nd hidden layer
-        conv2 = tf.layers.conv2d(lrelu1, 256, [5, 5], strides=(1, 1), padding='same', kernel_initializer=w_init, bias_initializer=b_init)
+        conv2 = tf.layers.conv2d(lrelu1, 32, [2, 8], strides=(1, 1), padding='same', kernel_initializer=w_init, bias_initializer=b_init)
         lrelu2 = lrelu(tf.layers.batch_normalization(conv2, training=isTrain), 0.2)
-
+        print('conv2')
+        print(conv2.shape)
+        # pool2 = tf.layers.max_pooling2d(inputs=lrelu2, pool_size=[2, 1], strides=2)
         # output layer
-        conv3 = tf.layers.conv2d(lrelu2, 1, [5, 5], strides=(1, 1), padding='valid', kernel_initializer=w_init)
+        conv3 = tf.layers.conv2d(lrelu2, 1, [2, 8], strides=(1, 1), padding='valid', kernel_initializer=w_init)
         o = tf.nn.sigmoid(conv3)
-
+        print('O - discriminator')
+        print(o.shape)
         return o, conv3
 
 def one_hot_enc(dataframe, _to_idx):
@@ -158,24 +176,38 @@ x_train = one_hot_enc(train_df.ipa, ipa_to_idx)
 y_train = one_hot_enc(train_df.word, char_to_idx)
 x_test = one_hot_enc(test_df.ipa, ipa_to_idx)
 y_test = one_hot_enc(test_df.word, char_to_idx)
+print(x_train.shape)
 
-x = tf.placeholder(tf.float32, shape=(None, None, 35, 1))
-z = tf.placeholder(tf.float32, shape=(None, None, 1, 100))
-y_label = tf.placeholder(tf.float32, shape=(None, None, 1, 28))
-y_fill = tf.placeholder(tf.float32, shape=(None, None, 35, 28))
+
+x = tf.placeholder(tf.float32, shape=(None, x_train.shape[1], x_train.shape[2], 1))
+z = tf.placeholder(tf.float32, shape=(None, x_train.shape[1], x_train.shape[2], 1))
+y_label = tf.placeholder(tf.float32, shape=(None, y_train.shape[1], y_train.shape[2], 1))
+y_fill = tf.placeholder(tf.float32, shape=(None, y_train.shape[1], y_train.shape[2], 1))
 isTrain = tf.placeholder(dtype=tf.bool)
+
+print('x shape')
+print(x.shape)
+print('z shape')
+print(z.shape)
+
+# x = tf.placeholder(tf.float32, shape=(None, img_size, img_size, 1))
+# z = tf.placeholder(tf.float32, shape=(None, 1, 1, 100))
+# y_label = tf.placeholder(tf.float32, shape=(None, 1, 1, 10))
+# y_fill = tf.placeholder(tf.float32, shape=(None, img_size, img_size, 10))
+# isTrain = tf.placeholder(dtype=tf.bool)
 
 # networks : generator
 G_z = generator(z, y_label, isTrain)
+print(G_z.shape)
 
 D_real, D_real_logits = discriminator(x, y_fill, isTrain)
 D_fake, D_fake_logits = discriminator(G_z, y_fill, isTrain, reuse=True)
 
 # loss for each network
-D_loss_real = tf.reduce_mean(tf.nn.sigmoid_cross_entropy_with_logits(logits=D_real_logits, labels=tf.ones([batch_size, 1, 1, 1])))
-D_loss_fake = tf.reduce_mean(tf.nn.sigmoid_cross_entropy_with_logits(logits=D_fake_logits, labels=tf.zeros([batch_size, 1, 1, 1])))
+D_loss_real = tf.reduce_mean(tf.nn.sigmoid_cross_entropy_with_logits(logits=D_real_logits, labels=tf.ones([batch_size, y_train.shape[1], y_train.shape[1], 1])))
+D_loss_fake = tf.reduce_mean(tf.nn.sigmoid_cross_entropy_with_logits(logits=D_fake_logits, labels=tf.zeros([batch_size, y_train.shape[1], y_train.shape[1], 1])))
 D_loss = D_loss_real + D_loss_fake
-G_loss = tf.reduce_mean(tf.nn.sigmoid_cross_entropy_with_logits(logits=D_fake_logits, labels=tf.ones([batch_size, 1, 1, 1])))
+G_loss = tf.reduce_mean(tf.nn.sigmoid_cross_entropy_with_logits(logits=D_fake_logits, labels=tf.ones([batch_size, y_train.shape[1], y_train.shape[1], 1])))
 
 # trainable variables for each network
 T_vars = tf.trainable_variables()
@@ -194,9 +226,9 @@ with tf.control_dependencies(tf.get_collection(tf.GraphKeys.UPDATE_OPS)):
 sess = tf.InteractiveSession()
 tf.global_variables_initializer().run()
 
-train_set = y_train
+train_set = x_train
 
-train_label = x_train
+train_label = y_train
 
 
 root = 'IPA_cDCGAN_results/'
@@ -226,17 +258,30 @@ for epoch in range(train_epoch):
     for iter in range(len(shuffled_set) // batch_size):
         # update discriminator
         x_ = shuffled_set[iter*batch_size:(iter+1)*batch_size]
-        y_label_ = shuffled_label[iter*batch_size:(iter+1)*batch_size].reshape([batch_size, 1, 1, 10])
-        y_fill_ = y_label_ * np.ones([batch_size, img_size, img_size, 10])
-        z_ = np.random.normal(0, 1, (batch_size, 1, 1, 100))
+        print(shuffled_label[iter*batch_size:(iter+1)*batch_size].shape)
+        y_label_ = shuffled_label[iter*batch_size:(iter+1)*batch_size].reshape([batch_size, y_train.shape[1], y_train.shape[2], 1])
+        y_fill_ = y_label_ * np.ones([batch_size, y_train.shape[1], y_train.shape[2], 1])
+        z_ = np.random.normal(0, 1, (batch_size, x_train.shape[1], x_train.shape[2], 1))
 
+        print('x')
+        print(x.shape)
+        print(x_.shape)
+        print('z')
+        print(z.shape)
+        print(z_.shape)
+        print('y_fill')
+        print(y_fill.shape)
+        print(y_fill_.shape)
+        print('y_label')
+        print(y_label.shape)
+        print(y_label_.shape)
         loss_d_, _ = sess.run([D_loss, D_optim], {x: x_, z: z_, y_fill: y_fill_, y_label: y_label_, isTrain: True})
 
         # update generator
-        z_ = np.random.normal(0, 1, (batch_size, 1, 1, 100))
+        z_ = np.random.normal(0, 1, (batch_size, y_train.shape[1], y_train.shape[1], 100))
         y_ = np.random.randint(0, 9, (batch_size, 1))
-        y_label_ = onehot[y_.astype(np.int32)].reshape([batch_size, 1, 1, 10])
-        y_fill_ = y_label_ * np.ones([batch_size, img_size, img_size, 10])
+        y_label_ = onehot[y_.astype(np.int32)].reshape([batch_size, y_train.shape[1], y_train.shape[1], 1])
+        y_fill_ = y_label_ * np.ones([batch_size, x_train.shape[1], x_train.shape[2], 1])
         loss_g_, _ = sess.run([G_loss, G_optim], {z: z_, x: x_, y_fill: y_fill_, y_label: y_label_, isTrain: True})
 
         errD_fake = D_loss_fake.eval({z: z_, y_label: y_label_, y_fill: y_fill_, isTrain: False})
