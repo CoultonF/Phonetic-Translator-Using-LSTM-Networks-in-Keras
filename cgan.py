@@ -13,6 +13,8 @@ def lrelu(X, leak=0.2):
     return f1 * X + f2 * tf.abs(X)
 
 # G(z)
+# z shape:       (?,28,28,1)
+# y_label shape: (?,29,35,1)
 def generator(x, y_label, isTrain=True, reuse=False):
     with tf.variable_scope('generator', reuse=reuse):
         # initializer
@@ -178,6 +180,24 @@ x_test = one_hot_enc(test_df.ipa, ipa_to_idx)
 y_test = one_hot_enc(test_df.word, char_to_idx)
 print(x_train.shape)
 
+# x shape:       (?,28,28,1)
+# z shape:       (?,28,28,1)
+# y_label shape: (?,29,35,1)
+# y_fill shape:  (?,29,35,1)
+
+# import tensorflow as tf
+# import numpy as np
+
+# t1 = tf.placeholder(tf.float32, [None, 400])
+# t2 = tf.placeholder(tf.float32, [None, 1176])
+# t3 = tf.concat([t1, t2], axis = 1)
+
+# with tf.Session() as sess:
+#    sess.run(tf.global_variables_initializer())
+#    t3_val = sess.run(t3, feed_dict = {t1: np.ones((300, 400)), t2: np.ones((300, 1176))})
+
+#     print(t3_val.shape)
+#      (300, 1576)
 
 x = tf.placeholder(tf.float32, shape=(None, x_train.shape[1], x_train.shape[2], 1))
 z = tf.placeholder(tf.float32, shape=(None, x_train.shape[1], x_train.shape[2], 1))
