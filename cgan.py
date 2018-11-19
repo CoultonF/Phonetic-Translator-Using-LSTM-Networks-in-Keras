@@ -16,42 +16,34 @@ def lrelu(X, leak=0.2):
 # z shape:       (?,28,28,1)
 # y_label shape: (?,29,35,1)
 def generator(x, y_label, isTrain=True, reuse=False):
+    print("Generator")
     with tf.variable_scope('generator', reuse=reuse):
         # initializer
         w_init = tf.truncated_normal_initializer(mean=0.0, stddev=0.02)
         b_init = tf.constant_initializer(0.0)
-
+        # print (x.shape)
+        # print (y_label.shape)
         # concat layer
         cat1 = tf.concat([x, y_label], 3)
-        print(cat1.shape)
-        print('x:')
-        print(x.shape)
-        print('y_label:')
-        print(y_label.shape)
-        print('cat1')
-        print(cat1.shape)
-        # ?,28,28,101
+        # print("CONCAT")
+        # print(cat1.shape)
+        # ?,1,1,110
         # 1st hidden layer
-        deconv1 = tf.layers.conv2d_transpose(cat1, 34, [5, 15], strides=(2, 2), padding='valid', kernel_initializer=w_init, bias_initializer=b_init)
+        deconv1 = tf.layers.conv2d_transpose(cat1, 256, [3, 9], strides=(1, 1), padding='valid', kernel_initializer=w_init, bias_initializer=b_init)
         lrelu1 = lrelu(tf.layers.batch_normalization(deconv1, training=isTrain), 0.2)
-        print('relu1')
-        print(lrelu1.shape)
-        # ?,34,34,256
+        # print('CONV1')
+        # print(lrelu1.shape)
         # 2nd hidden layer
-        pool1 = tf.layers.max_pooling2d(inputs=lrelu1, pool_size=[2, 1], strides=2)
-
-        deconv2 = tf.layers.conv2d_transpose(pool1, 32, [5, 15], strides=(2, 2), padding='same', kernel_initializer=w_init, bias_initializer=b_init)
+        deconv2 = tf.layers.conv2d_transpose(lrelu1, 128, [3, 8], strides=(1, 1), padding='same', kernel_initializer=w_init, bias_initializer=b_init)
         lrelu2 = lrelu(tf.layers.batch_normalization(deconv2, training=isTrain), 0.2)
-        print('relu1')
-        print(lrelu2.shape)
-
-        pool2 = tf.layers.max_pooling2d(inputs=lrelu2, pool_size=[2, 1], strides=2)
+        pool2 = tf.layers.max_pooling2d(inputs=lrelu2, pool_size=[2, 2], strides=1)
+        # print('CONV2')
+        # print(lrelu2.shape)
         # output layer
-        deconv3 = tf.layers.conv2d_transpose(pool2, 1, [7, 15], strides=(1, 1), padding='same', kernel_initializer=w_init, bias_initializer=b_init)
-        print('relu1')
-        print(deconv3.shape)
+        deconv3 = tf.layers.conv2d_transpose(pool2, 1, [7, 8], strides=(1, 1), padding='same', kernel_initializer=w_init, bias_initializer=b_init)
         o = tf.nn.tanh(deconv3)
-        #
+        # print('CONV3')
+        # print (o.shape)
         return o
 
 # D(x)
@@ -63,26 +55,33 @@ def discriminator(x, y_fill, isTrain=True, reuse=False):
 
         # concat layer
         cat1 = tf.concat([x, y_fill], 3)
-        print('cat1')
+        print("CONCAT")
         print(cat1.shape)
-        # 1st hidden layer
-        conv1 = tf.layers.conv2d(cat1, 34, [2, 8], strides=(1, 1), padding='same', kernel_initializer=w_init, bias_initializer=b_init)
+
+        # 1st hidden 5
+        conv1 = tf.layers.conv2d(cat1, 128, [2, 8], strides=(1, 1), padding='same', kernel_initializer=w_init, bias_initializer=b_init)
         lrelu1 = lrelu(conv1, 0.2)
-        print('conv1')
-        print(conv1.shape)
-        # pool1 = tf.layers.max_pooling2d(inputs=lrelu1, pool_size=[2, 1], strides=2)
+        print('CONV1')
+        print(lrelu1.shape)
         # 2nd hidden layer
-        conv2 = tf.layers.conv2d(lrelu1, 32, [2, 8], strides=(1, 1), padding='same', kernel_initializer=w_init, bias_initializer=b_init)
+        conv2 = tf.layers.conv2d(lrelu1, 256, [2, 8], strides=(1, 1), padding='same', kernel_initializer=w_init, bias_initializer=b_init)
         lrelu2 = lrelu(tf.layers.batch_normalization(conv2, training=isTrain), 0.2)
-        print('conv2')
-        print(conv2.shape)
-        # pool2 = tf.layers.max_pooling2d(inputs=lrelu2, pool_size=[2, 1], strides=2)
+        print('CONV2')
+        print(lrelu2.shape)
         # output layer
         conv3 = tf.layers.conv2d(lrelu2, 1, [2, 8], strides=(1, 1), padding='valid', kernel_initializer=w_init)
         o = tf.nn.sigmoid(conv3)
-        print('O - discriminator')
-        print(o.shape)
+        print('CONV3')
+        print (o.shape)
         return o, conv3
+def one_hot_enc_gen(dataframe, _to_idx):
+    vector = np.zeros((len(dataframe), 28, len(_to_idx),1))
+    for idx,x in enumerate(dataframe):
+        indices = []
+        for l in x:
+            indices.append(_to_idx[l])
+        vector[idx, np.arange(len(x)), indices] = 1
+    return vector
 
 def one_hot_enc(dataframe, _to_idx):
     vector = np.zeros((len(dataframe), dataframe.str.len().max(), len(_to_idx),1))
@@ -93,14 +92,26 @@ def one_hot_enc(dataframe, _to_idx):
         vector[idx, np.arange(len(x)), indices] = 1
     return vector
 
+def from_one_hot(onehot, _to_idx):
+    onehot_as_string = []
+    for idx,x in enumerate(onehot):
+        onehot_as_string.append([])
+        for l in x:
+            l = l.flatten()
+            print(l)
+            # onehot_as_string[idx].append(_to_idx[l])
+
 # def string_vectorizer(str_input, alphabet):
 #     vector = [[[0] if char != symbol else [1] for char in alphabet]
 #                   for symbol in str_input]
 #     return array(vector)
 
-def show_result(num_epoch, show = False, save = False, path = 'result.png'):
+def show_result(num_epoch, onehot, show = False, save = False, path = 'result.png', ):
     test_images = sess.run(G_z, {z: fixed_z_, y_label: fixed_y_, isTrain: False})
-
+    for letter in test_images[0]:
+        print(np.argmax(letter))
+    for letter in test_images[0]:
+        print(onehot[np.argmax(letter)])
     size_figure_grid = 10
     fig, ax = plt.subplots(size_figure_grid, size_figure_grid, figsize=(5, 5))
     for i, j in itertools.product(range(size_figure_grid), range(size_figure_grid)):
@@ -151,15 +162,17 @@ def show_train_hist(hist, show = False, save = False, path = 'Train_hist.png'):
 # training parameters
 batch_size = 100
 # lr = 0.0002
-train_epoch = 30
+
+train_epoch = 1
 global_step = tf.Variable(0, trainable=False)
 lr = tf.train.exponential_decay(0.0002, global_step, 500, 0.95, staircase=True)
 
 train_words = []
 train_ipa = []
 fields = ['word', 'ipa']
-train_df = pandas.read_csv('data/non-name-words.txt', encoding='utf-16-le', usecols=fields)
+train_df = pandas.read_csv('data/small.txt', encoding='utf-8', usecols=fields)
 test_df = pandas.read_csv('data/name-words.txt', encoding='utf-16-le', usecols=fields)
+gen_df = pandas.read_csv('data/gen.txt', encoding='utf-8', usecols=fields)
 
 chars = list(set("".join(train_df.word)))
 idx_to_char = {ix:char for ix, char in enumerate(chars)}
@@ -168,6 +181,14 @@ char_to_idx = {char:ix for ix, char in enumerate(chars)}
 chars = list(set("".join(train_df.ipa)))
 idx_to_ipa = {ix:char for ix, char in enumerate(chars)}
 ipa_to_idx = {char:ix for ix, char in enumerate(chars)}
+
+onehot_df = pandas.DataFrame(columns=list("w"))
+onehot_df.loc[0] = ["adrienne"]
+onehot = one_hot_enc_gen(gen_df.word, char_to_idx)
+
+temp_z_ = np.random.normal(0, 1, (100, 28, 28, 1))
+fixed_z_ = temp_z_
+fixed_y_ = np.random.normal(0, 1, (100, 28, 28, 1))
 
 print("Character Vocab")
 print (idx_to_char)
@@ -185,24 +206,10 @@ print(x_train.shape)
 # y_label shape: (?,29,35,1)
 # y_fill shape:  (?,29,35,1)
 
-# import tensorflow as tf
-# import numpy as np
-
-# t1 = tf.placeholder(tf.float32, [None, 400])
-# t2 = tf.placeholder(tf.float32, [None, 1176])
-# t3 = tf.concat([t1, t2], axis = 1)
-
-# with tf.Session() as sess:
-#    sess.run(tf.global_variables_initializer())
-#    t3_val = sess.run(t3, feed_dict = {t1: np.ones((300, 400)), t2: np.ones((300, 1176))})
-
-#     print(t3_val.shape)
-#      (300, 1576)
-
 x = tf.placeholder(tf.float32, shape=(None, x_train.shape[1], x_train.shape[2], 1))
-z = tf.placeholder(tf.float32, shape=(None, x_train.shape[1], x_train.shape[2], 1))
+z = tf.placeholder(tf.float32, shape=(None, y_train.shape[1], y_train.shape[2], 1))
 y_label = tf.placeholder(tf.float32, shape=(None, y_train.shape[1], y_train.shape[2], 1))
-y_fill = tf.placeholder(tf.float32, shape=(None, y_train.shape[1], y_train.shape[2], 1))
+y_fill = tf.placeholder(tf.float32, shape=(None, x_train.shape[1], x_train.shape[2], 1))
 isTrain = tf.placeholder(dtype=tf.bool)
 
 print('x shape')
@@ -219,13 +226,16 @@ print(z.shape)
 # networks : generator
 G_z = generator(z, y_label, isTrain)
 print(G_z.shape)
-
+print('discriminator real')
 D_real, D_real_logits = discriminator(x, y_fill, isTrain)
+print('discriminator fake')
 D_fake, D_fake_logits = discriminator(G_z, y_fill, isTrain, reuse=True)
-
+print("discriminator")
+print(D_real.shape)
+print(D_fake.shape)
 # loss for each network
-D_loss_real = tf.reduce_mean(tf.nn.sigmoid_cross_entropy_with_logits(logits=D_real_logits, labels=tf.ones([batch_size, y_train.shape[1], y_train.shape[1], 1])))
-D_loss_fake = tf.reduce_mean(tf.nn.sigmoid_cross_entropy_with_logits(logits=D_fake_logits, labels=tf.zeros([batch_size, y_train.shape[1], y_train.shape[1], 1])))
+D_loss_real = tf.reduce_mean(tf.nn.sigmoid_cross_entropy_with_logits(logits=D_real_logits, labels=tf.ones([batch_size, y_train.shape[1], y_train.shape[2], 1])))
+D_loss_fake = tf.reduce_mean(tf.nn.sigmoid_cross_entropy_with_logits(logits=D_fake_logits, labels=tf.zeros([batch_size, y_train.shape[1], y_train.shape[2], 1])))
 D_loss = D_loss_real + D_loss_fake
 G_loss = tf.reduce_mean(tf.nn.sigmoid_cross_entropy_with_logits(logits=D_fake_logits, labels=tf.ones([batch_size, y_train.shape[1], y_train.shape[1], 1])))
 
@@ -278,31 +288,46 @@ for epoch in range(train_epoch):
     for iter in range(len(shuffled_set) // batch_size):
         # update discriminator
         x_ = shuffled_set[iter*batch_size:(iter+1)*batch_size]
-        print(shuffled_label[iter*batch_size:(iter+1)*batch_size].shape)
-        y_label_ = shuffled_label[iter*batch_size:(iter+1)*batch_size].reshape([batch_size, y_train.shape[1], y_train.shape[2], 1])
-        y_fill_ = y_label_ * np.ones([batch_size, y_train.shape[1], y_train.shape[2], 1])
-        z_ = np.random.normal(0, 1, (batch_size, x_train.shape[1], x_train.shape[2], 1))
-
-        print('x')
-        print(x.shape)
-        print(x_.shape)
-        print('z')
-        print(z.shape)
-        print(z_.shape)
-        print('y_fill')
-        print(y_fill.shape)
-        print(y_fill_.shape)
-        print('y_label')
-        print(y_label.shape)
-        print(y_label_.shape)
+        # print(shuffled_label.shape)
+        # print(shuffled_set.shape)
+        y_label_ = shuffled_label[iter*batch_size:(iter+1)*batch_size]
+        # print("YLABEL")
+        # print(y_label_.shape)
+        y_fill_ = np.ones([batch_size, x_train.shape[1], x_train.shape[2], 1])
+        z_ = np.random.normal(0, 1, (batch_size, y_train.shape[1], y_train.shape[2], 1))
+        #
+        # print('x')
+        # print(x.shape)
+        # print(x_.shape)
+        # print('z')
+        # print(z.shape)
+        # print(z_.shape)
+        # print('y_fill')
+        # print(y_fill.shape)
+        # print(y_fill_.shape)
+        # print('y_label')
+        # print(y_label.shape)
+        # print(y_label_.shape)
         loss_d_, _ = sess.run([D_loss, D_optim], {x: x_, z: z_, y_fill: y_fill_, y_label: y_label_, isTrain: True})
-
+        # print(loss_d_)
         # update generator
-        z_ = np.random.normal(0, 1, (batch_size, y_train.shape[1], y_train.shape[1], 100))
-        y_ = np.random.randint(0, 9, (batch_size, 1))
-        y_label_ = onehot[y_.astype(np.int32)].reshape([batch_size, y_train.shape[1], y_train.shape[1], 1])
-        y_fill_ = y_label_ * np.ones([batch_size, x_train.shape[1], x_train.shape[2], 1])
+        z_ = np.random.normal(0, 1, (batch_size, y_train.shape[1], y_train.shape[2], 1))
+        y_ = np.random.randint(0, 1, (batch_size, y_train.shape[1], y_train.shape[2], 1))
+        y_label_ = onehot.reshape([batch_size, y_train.shape[1], y_train.shape[2], 1])
+        y_fill_ = np.ones([batch_size, x_train.shape[1], x_train.shape[2], 1])
+        # print('z_')
+        # print(z.shape)
+        # print(z_.shape)
+        # print('y_label_')
+        # print(y_label.shape)
+        # print(y_label_.shape)
+        # print('y_fill_')
+        # print(y_fill.shape)
+        # print(y_fill_.shape)
         loss_g_, _ = sess.run([G_loss, G_optim], {z: z_, x: x_, y_fill: y_fill_, y_label: y_label_, isTrain: True})
+
+
+
 
         errD_fake = D_loss_fake.eval({z: z_, y_label: y_label_, y_fill: y_fill_, isTrain: False})
         errD_real = D_loss_real.eval({x: x_, y_label: y_label_, y_fill: y_fill_, isTrain: False})
@@ -315,7 +340,7 @@ for epoch in range(train_epoch):
     per_epoch_ptime = epoch_end_time - epoch_start_time
     print('[%d/%d] - ptime: %.2f loss_d: %.3f, loss_g: %.3f' % ((epoch + 1), train_epoch, per_epoch_ptime, np.mean(D_losses), np.mean(G_losses)))
     fixed_p = root + 'Fixed_results/' + model + str(epoch + 1) + '.png'
-    show_result((epoch + 1), save=True, path=fixed_p)
+    show_result((epoch + 1), save=True, path=fixed_p, onehot=idx_to_ipa)
     train_hist['D_losses'].append(np.mean(D_losses))
     train_hist['G_losses'].append(np.mean(G_losses))
     train_hist['per_epoch_ptimes'].append(per_epoch_ptime)
@@ -329,10 +354,10 @@ print("Training finish!... save training results")
 with open(root + model + 'train_hist.pkl', 'wb') as f:
     pickle.dump(train_hist, f)
 
-# show_train_hist(train_hist, save=True, path=root + model + 'train_hist.png')
+show_train_hist(train_hist, save=True, path=root + model + 'train_hist.png')
 
-# images = []
-# for e in range(train_epoch):
-#     img_name = root + 'Fixed_results/' + model + str(e + 1) + '.png'
-#     images.append(imageio.imread(img_name))
-# imageio.mimsave(root + model + 'generation_animation.gif', images, fps=5)
+# # images = []
+# # for e in range(train_epoch):
+# #     img_name = root + 'Fixed_results/' + model + str(e + 1) + '.png'
+# #     images.append(imageio.imread(img_name))
+# # imageio.mimsave(root + model + 'generation_animation.gif', images, fps=5)
