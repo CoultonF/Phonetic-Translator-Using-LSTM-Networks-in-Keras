@@ -1,0 +1,302 @@
+[1/100] - ptime: 76.38 loss_d: 0.701, loss_g: 3.427
+aaron
+ ə əθŋzθ əə   ə ə        h
+[2/100] - ptime: 77.30 loss_d: 3.181, loss_g: 16.295
+aaron
+ j ezbɫɡh h ʒ   vʒvʒas ɡmææ
+[3/100] - ptime: 73.48 loss_d: 8.390, loss_g: 19.704
+aaron
+ɝɝmusssnɪɝɝnnɝɝ θhwwθɝθθnθθθθ
+[4/100] - ptime: 73.34 loss_d: 12.420, loss_g: 17.763
+aaron
+ʒθʒɡɡɡɡɡɡɪ     ɝɝhðððɝ  hhhɝh
+[5/100] - ptime: 73.21 loss_d: 15.808, loss_g: 21.983
+aaron
+vɫɫððiiððdɔɔɔooɔɔɔɔeæjeɔɔɫɫwa
+[6/100] - ptime: 74.27 loss_d: 28.911, loss_g: 30.574
+aaron
+ ɝmɡɡsɡɡɡ  hhh nθʒðɫðhʒʒnθθθʒ
+[7/100] - ptime: 73.98 loss_d: 30.573, loss_g: 27.967
+aaron
+ ɝɡɡɡsɡɡɡ      hhɫðɫðh ʒnnnθʒ
+[8/100] - ptime: 74.20 loss_d: 23.825, loss_g: 26.921
+aaron
+ iiðiiidedpjooeeeɑɑpæjobɔɔðaa
+[9/100] - ptime: 74.26 loss_d: 24.631, loss_g: 33.478
+aaron
+ ɫɫðiiiððeeeeɔeɔɔɔɔeʊzʊʊɔɔɫwa
+[10/100] - ptime: 73.60 loss_d: 24.074, loss_g: 23.443
+aaron
+nɹɹe ɫededʒ   ssaamak    əɪe
+[11/100] - ptime: 73.62 loss_d: 27.605, loss_g: 24.677
+aaron
+kkkksssθŋŋŋ    ŋvɫðððh ʒʒθnɝn
+[12/100] - ptime: 73.83 loss_d: 26.134, loss_g: 24.453
+aaron
+ʒ θɡθsθwŋ      ɪɝhðððɝ   hnɝn
+[13/100] - ptime: 74.40 loss_d: 23.563, loss_g: 31.226
+aaron
+θθʃʒθɫɫɫɫŋ ʃ   ɪŋɛdɹɹɝ ŋ  ɝɝŋ
+[14/100] - ptime: 73.86 loss_d: 19.562, loss_g: 20.025
+aaron
+kkkkkkkkk     ʒsθʒʒðɫv ʒɡθθθθ
+[15/100] - ptime: 73.37 loss_d: 31.417, loss_g: 22.867
+aaron
+kkkkθhŋhŋŋ     ŋŋɛwððɝ   θɝɝh
+[16/100] - ptime: 73.27 loss_d: 25.483, loss_g: 23.727
+aaron
+ŋŋʒʒʒnŋəŋŋŋŋ ɪɪɪŋiððɹɹ   ɝɝɝh
+[17/100] - ptime: 73.10 loss_d: 26.970, loss_g: 22.474
+aaron
+kɹθʒθθθθŋŋ     sɝɝaaðɝ   ɡɝnɡ
+[18/100] - ptime: 74.21 loss_d: 22.863, loss_g: 25.917
+aaron
+kkkksskk      ʒɫθʒʒððɝ ʒɡθnnh
+[19/100] - ptime: 73.69 loss_d: 23.161, loss_g: 26.644
+aaron
+ʒʒʒʒʒnðððŋŋŋŋɪɪdduuuuɹɹŋ  ɛɛɛ
+[20/100] - ptime: 75.89 loss_d: 31.035, loss_g: 24.782
+aaron
+swɡðwsθðððjoebjeiieeææjɔɔɔaɹv
+[21/100] - ptime: 75.08 loss_d: 17.721, loss_g: 27.812
+aaron
+ddðððɫθðððjɔeojiiiukzææɔɔvɔɹv
+[22/100] - ptime: 75.47 loss_d: 28.878, loss_g: 33.525
+aaron
+sɫukʊsθkaa     iiʒmwðaɫibkðɹh
+[23/100] - ptime: 75.11 loss_d: 17.755, loss_g: 28.230
+aaron
+θθððiɫθðððjɔɔojæiæmzzææɔɑvaɹv
+[24/100] - ptime: 75.20 loss_d: 24.149, loss_g: 31.160
+aaron
+θθθθdɫθɫɫðjɔɔvjæiiiæzææɔevaɹh
+[25/100] - ptime: 74.92 loss_d: 12.224, loss_g: 14.384
+aaron
+mssɹdɫɡvʊðbɔpθoeojuvejjɹpðakɫ
+[26/100] - ptime: 74.72 loss_d: 7.469, loss_g: 12.504
+aaron
+sksssɡɡɡɡɑ   nn ʒʒhvʒðnnpʒahn
+[27/100] - ptime: 73.28 loss_d: 5.171, loss_g: 11.734
+aaron
+mkukvmmmmh ʒhθɛ ɛʒu ajiɔpðθθɫ
+[28/100] - ptime: 73.25 loss_d: 8.643, loss_g: 14.105
+aaron
+ssssvssssɑ   nnnʒʒʒvʃʃnnnʒʒʒn
+[29/100] - ptime: 73.23 loss_d: 7.200, loss_g: 14.415
+aaron
+kkkkhhŋəmɑ   nn θʒuvvʃinnθθθb
+[30/100] - ptime: 74.81 loss_d: 7.380, loss_g: 13.825
+aaron
+θkθkhkosmɑɡɫhnɫɫ ʒhvvɔhnwθθθn
+[31/100] - ptime: 78.61 loss_d: 6.109, loss_g: 13.992
+aaron
+θkhɫhhoɫɪɑ ŋhʒʃ  tu ʃjænwðŋaɫ
+[32/100] - ptime: 79.03 loss_d: 5.012, loss_g: 15.354
+aaron
+θkkɫhkoamɑ ɫhʒɫɫ ʒu vjiwwðŋap
+[33/100] - ptime: 79.06 loss_d: 5.851, loss_g: 17.422
+aaron
+θkvɫhkommɑ ɫhʒɫɫ ɡuʊvɔɔnwðjai
+[34/100] - ptime: 79.12 loss_d: 6.723, loss_g: 14.293
+aaron
+θkɡɫhkowwkiɫhʒɫɫnʒuʊvɔnnnnaan
+[35/100] - ptime: 76.94 loss_d: 2.731, loss_g: 11.759
+aaron
+θkvɫhhoo ɑiɫhʒɫɫɔduʊvɔnnwðozn
+[36/100] - ptime: 73.48 loss_d: 4.202, loss_g: 12.451
+aaron
+θkɡɫwkoamkiɫʒʒɫɫnʒʊʊvɔinwnoan
+[37/100] - ptime: 73.47 loss_d: 3.362, loss_g: 10.437
+aaron
+θkɡɫhkoam iɫʒʒɫɫɔʊʊʊvɡinwðozn
+[38/100] - ptime: 73.38 loss_d: 3.449, loss_g: 11.418
+aaron
+θkɡɫhhooɪiiɫhʒɫznhdʊʃɔɔnwnozn
+[39/100] - ptime: 73.26 loss_d: 2.633, loss_g: 10.414
+aaron
+θkɡɫokoaʒiiɫɫʒɫɫɔʊʊʊʃɔɔnwðozn
+[40/100] - ptime: 73.37 loss_d: 1.724, loss_g: 9.617
+aaron
+θkvɫokoaɪiiɫɫʒɫɫɔkʊʊʃɔɔnɔðozn
+[41/100] - ptime: 73.85 loss_d: 1.164, loss_g: 8.994
+aaron
+θkɡɫokoaɪiiɫɫʒɫɫɔhʊʊʃɔɔnwwŋzn
+[42/100] - ptime: 73.44 loss_d: 1.239, loss_g: 7.716
+aaron
+θkɡɫokoʒɪiiiɫʒɫzɔkʊʊʃɔɔnwwobn
+[43/100] - ptime: 73.41 loss_d: 1.187, loss_g: 8.055
+aaron
+θkɡɫɫkoʒɪiiiɫʒɫzɔʊʊʊʃɔɔnwwdzn
+[44/100] - ptime: 73.36 loss_d: 1.298, loss_g: 7.528
+aaron
+θkɡɫɫooʒʒiiiɫʒɫnnhʊʊʃpɔnnwdwn
+[45/100] - ptime: 73.37 loss_d: 1.017, loss_g: 7.158
+aaron
+θkɡθɫooʒɪiihɫʒɫznhʊʊʃɔɔnwwdwn
+[46/100] - ptime: 73.43 loss_d: 2.025, loss_g: 7.534
+aaron
+θkaθɫooʒkw hɫʒɫɫvɫʊʊʃɔɔnwwdin
+[47/100] - ptime: 73.43 loss_d: 1.174, loss_g: 5.865
+aaron
+θkɡθɫooʒkiihɫʒɫnnʊʊʊʃɔɔnwwdin
+[48/100] - ptime: 73.43 loss_d: 0.746, loss_g: 4.048
+aaron
+θkaθɫooʒkiihɫʒɫnnʊʊʊʃɔɔnwwdin
+[49/100] - ptime: 73.44 loss_d: 0.812, loss_g: 4.381
+aaron
+θkaθɫooʒkiihɫʒɫzvʊʊʊʃɔɔnwwdin
+[50/100] - ptime: 73.46 loss_d: 0.802, loss_g: 4.508
+aaron
+θkaθɫɫoʒkiihɫʒɫnvʊʊʊʃɔɔnwwdin
+[51/100] - ptime: 73.45 loss_d: 0.717, loss_g: 3.483
+aaron
+θkaθɫɫoʒkiihɫʒɫnvnʊʊʃɔɔnwwdin
+[52/100] - ptime: 73.31 loss_d: 1.077, loss_g: 5.123
+aaron
+θkaθɫɫoʒkiihɫʒʒnvnʊʊʃɔɔnwwdwn
+[53/100] - ptime: 73.41 loss_d: 1.960, loss_g: 5.575
+aaron
+θkɡθɫɫoʒkiiiiʒʒnvnʊʊʃpɔndwdwn
+[54/100] - ptime: 73.43 loss_d: 1.679, loss_g: 4.067
+aaron
+θkaθɫɫoʒkiiiɫʒʒʒvɫʊʊʃpɔndwdwn
+[55/100] - ptime: 73.46 loss_d: 1.414, loss_g: 3.712
+aaron
+θkɡθɫɫoʒkɫiiɫʒʒʒvnʊʊʃpɔnwwdwn
+[56/100] - ptime: 73.44 loss_d: 1.099, loss_g: 3.409
+aaron
+θkɡθɫɫoʒkɫiikʒʒʒvɫʊʊʃpɔwwwdwn
+[57/100] - ptime: 73.43 loss_d: 0.993, loss_g: 3.220
+aaron
+θɡɡθɫɫoʒkɫiikʒhʒvʒʊʊʃpɔnwwdwn
+[58/100] - ptime: 73.39 loss_d: 0.899, loss_g: 2.743
+aaron
+θθɡθɫɫoʒkiiikʒhhvɫʊʊʃpɔwwwdwn
+[59/100] - ptime: 73.47 loss_d: 0.842, loss_g: 2.853
+aaron
+θɡɡθɫɫoʒkiiikʒhhvʒnʊʃpɔwwwdwn
+[60/100] - ptime: 73.39 loss_d: 0.885, loss_g: 2.718
+aaron
+θɡɡθɫɫookkiikʒhʒɫʒʊʊʃpɔwwwdwi
+[61/100] - ptime: 73.36 loss_d: 0.785, loss_g: 2.698
+aaron
+θθɡθɫɫookkiikʒhhɫʒʊʊʃpɔwwwdwi
+[62/100] - ptime: 73.38 loss_d: 0.726, loss_g: 2.618
+aaron
+θɡɡθɫɫookkiikʒhʒɫʒɫʊʃpɔwwwdwi
+[63/100] - ptime: 73.36 loss_d: 0.789, loss_g: 2.597
+aaron
+θθɡθɫɫookkiikhhhɫʒɫʊʃpɔwwwdwn
+[64/100] - ptime: 73.48 loss_d: 0.840, loss_g: 2.684
+aaron
+θθɡθɫɫookkiikhhhɫʒɫuehɔwwwdwi
+[65/100] - ptime: 73.43 loss_d: 0.786, loss_g: 2.512
+aaron
+θθɡθɫɫookkiikhhhɫʒɫuehɔwwwdwi
+[66/100] - ptime: 73.44 loss_d: 0.802, loss_g: 2.487
+aaron
+θθɡθɫɫookkikkhhhɫʒɫuehɔwwwdwi
+[67/100] - ptime: 73.40 loss_d: 6.126, loss_g: 4.005
+aaron
+θθɡθɫɫookkikkhhhɫʒɫuehɔwwwdwi
+[68/100] - ptime: 73.48 loss_d: 5.188, loss_g: 5.676
+aaron
+iθθθakooɡkkiihhhɫʒɫuehhwwwdwi
+[69/100] - ptime: 73.38 loss_d: 1.445, loss_g: 1.675
+aaron
+iθθθmkooɫkkkihhhʒʒɫuehhwwwdwi
+[70/100] - ptime: 73.32 loss_d: 1.327, loss_g: 2.030
+aaron
+ieθθmzooɫkkkkhbhʒʒɫuehbwwwdwi
+[71/100] - ptime: 73.35 loss_d: 0.982, loss_g: 2.821
+aaron
+ieθamzooɫkkkkhbhæʒɫuehbwwwddi
+[72/100] - ptime: 73.46 loss_d: 1.188, loss_g: 2.983
+aaron
+ieθamzooɫkkkkhbbæʒɫuehbwwwddi
+[73/100] - ptime: 73.42 loss_d: 1.349, loss_g: 3.043
+aaron
+ieθamzoovkhkkhbbæʒʒuhhbwwwddi
+[74/100] - ptime: 73.33 loss_d: 4.237, loss_g: 5.184
+aaron
+ieθamzoovkkkkibbæʒʒuhhbwwwddi
+[75/100] - ptime: 73.36 loss_d: 1.894, loss_g: 3.538
+aaron
+ieθamzoovkkkkibbæʒʒuhhewwwddi
+[76/100] - ptime: 73.37 loss_d: 1.604, loss_g: 4.174
+aaron
+ieθamzoovkkakibbæʒʒudhewwwwdi
+[77/100] - ptime: 73.46 loss_d: 1.187, loss_g: 3.036
+aaron
+ieθaɫzoovkkakibbvʒʒudhewwwwdi
+[78/100] - ptime: 73.38 loss_d: 1.376, loss_g: 5.299
+aaron
+ieθamzoovkhakibbvʒʒɫohewwwwdi
+[79/100] - ptime: 73.46 loss_d: 2.564, loss_g: 4.116
+aaron
+ieθaɫzoovkhakibbvʒʒɫohewwwwdi
+[80/100] - ptime: 73.42 loss_d: 1.052, loss_g: 4.465
+aaron
+ieθaɫzoovkhakibbvʒʒɫohewwwwdi
+[81/100] - ptime: 73.44 loss_d: 0.956, loss_g: 5.374
+aaron
+iiθθɫzoovkhakibbvæʒɫohewwwwdi
+[82/100] - ptime: 73.47 loss_d: 0.810, loss_g: 4.767
+aaron
+iiθθɫzoovkhakibbvæʒɫohewwwwdi
+[83/100] - ptime: 73.41 loss_d: 0.871, loss_g: 4.629
+aaron
+iiθθɫzooɡkhakibbvæʒɫohewwwwdi
+[84/100] - ptime: 73.40 loss_d: 1.018, loss_g: 4.495
+aaron
+iiθθɫzoovkhakibbvæʒɫohewwwwdi
+[85/100] - ptime: 73.50 loss_d: 1.068, loss_g: 4.915
+aaron
+iiθθɫzooɡkhakibbvæʒɫohewwwwdi
+[86/100] - ptime: 73.35 loss_d: 5.082, loss_g: 6.526
+aaron
+iiθθɫzooɡkhakibbvæʒɫohewwwwdi
+[87/100] - ptime: 73.43 loss_d: 2.080, loss_g: 4.787
+aaron
+iiθθɫzooɡkhakibbvæʒɫohewwwwdi
+[88/100] - ptime: 73.44 loss_d: 1.040, loss_g: 3.854
+aaron
+iiθθɫzooɡkhakibbvæʒɫohewwwwdi
+[89/100] - ptime: 73.41 loss_d: 0.836, loss_g: 4.180
+aaron
+iiθθɫzooɡkhakibbvæʒɫohewwwwdi
+[90/100] - ptime: 73.51 loss_d: 0.783, loss_g: 4.620
+aaron
+iiθθɫzooɡkhakibbvæʒɫohewwwwdi
+[91/100] - ptime: 73.85 loss_d: 4.232, loss_g: 6.085
+aaron
+ikθθɫzooɡkhakibbvæʒɫohewwwwdi
+[92/100] - ptime: 73.23 loss_d: 1.757, loss_g: 2.629
+aaron
+ikθθɫzooɡkhakibbvæʒɫohewwwwdi
+[93/100] - ptime: 73.35 loss_d: 1.256, loss_g: 6.145
+aaron
+ikθθɫzooɡkhakibbvæʒɫohewwwwdb
+[94/100] - ptime: 73.11 loss_d: 1.391, loss_g: 6.941
+aaron
+ikθθɫzooɡkhakibbvæʒɫohewwwwdb
+[95/100] - ptime: 73.35 loss_d: 0.770, loss_g: 6.203
+aaron
+ikθθɫzooɡkhakibbvæʒɫohewwwwdb
+[96/100] - ptime: 73.79 loss_d: 0.771, loss_g: 6.119
+aaron
+ikθθɫzooɡkhakibbvæʒɫohewwwwdb
+[97/100] - ptime: 75.09 loss_d: 0.699, loss_g: 4.488
+aaron
+ikθθɫzooɡkhakibbvæʒɫohewwwwdb
+[98/100] - ptime: 77.23 loss_d: 0.824, loss_g: 4.948
+aaron
+ikθθɫzooɡkhakibbvæʒɫohewwwwdb
+[99/100] - ptime: 74.27 loss_d: 0.723, loss_g: 4.536
+aaron
+ikθθɫzooɡkhakibbvæʒɫohevwwwdb
+[100/100] - ptime: 73.46 loss_d: 0.780, loss_g: 4.540
+aaron
+ikθθɫzooɡkhakibbvæʒɫohevwwwdb
+Avg per epoch ptime: 74.00, total 100 epochs ptime: 7403.57
+Training finish!... save training results
