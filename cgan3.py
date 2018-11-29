@@ -241,9 +241,11 @@ onehot = one_hot_enc_gen(generative_df.word, char_to_idx, y_train.shape[1])
 # z shape:       (?,28,28,1)
 # y_label shape: (?,29,35,1)
 # y_fill shape:  (?,29,35,1)
-temp_z_ = np.random.normal(0, 1, (100, y_train.shape[1], y_train.shape[2], 1))
+temp_z_ = np.eye(y_train.shape[2])[np.random.choice(y_train.shape[2],y_train.shape[1])].reshape(1,y_train.shape[1],y_train.shape[2],1)
 fixed_z_ = temp_z_
-fixed_y_ = np.random.normal(0, 1, (100, y_train.shape[1], y_train.shape[2], 1))
+for i in range(batch_size - 1):
+    fixed_z_ = np.concatenate([fixed_z_, temp_z_],0)
+fixed_y_ = onehot.reshape(100, y_train.shape[1], y_train.shape[2], 1)
 
 x = tf.placeholder(tf.float32, shape=(None, x_train.shape[1], x_train.shape[2], 1))
 z = tf.placeholder(tf.float32, shape=(None, y_train.shape[1], y_train.shape[2], 1))
