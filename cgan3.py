@@ -142,12 +142,13 @@ def show_result(num_epoch, epoch_label, show = False, save = False, path = 'resu
             raw_ipa_onehot= np.array([])
             for letter in y_label_[idx]:
                 word_str += idx_to_char[np.argmax(letter)]
-            # print(word_str)
             for letter in word:
                 raw_ipa_onehot = word.reshape(y_train.shape[1],36)
                 ipa_str += idx_to_ipa[np.argmax(letter)]
             print('Word:',word_str,'\Real IPA:',generative_df.ipa[idx],'\tGen. IPA:',raw_ipa_onehot.flatten(), file=r)
             print('Word:',word_str,'\tGen. IPA:',ipa_str,'\tReal IPA:',generative_df.ipa[idx], file=f)
+        print('Word:',word_str,'\tGen. IPA:',ipa_str,'\tReal IPA:',generative_df.ipa[len(generative_df.index)])
+
 
     # size_figure_grid = 10
     # fig, ax = plt.subplots(size_figure_grid, size_figure_grid, figsize=(5, 5))
