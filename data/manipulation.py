@@ -19,4 +19,4 @@ for idx, row in df.iterrows():
     if idx%200==0:
         drop_idxs.append(idx)
 df = df.loc[drop_idxs]
-df.to_csv(r'./data/100-5-letter-non-name-words-dataset.txt',encoding='utf-16-le', header=None, index=None, mode='a',sep=',')
+df.to_csv(r'./data/100-5-letter-non-name-words-dataset.txt',encoding='utf-8', header=None, index=None, mode='a',sep=',')
