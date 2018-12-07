@@ -198,10 +198,10 @@ def show_train_hist(hist, show = False, save = False, path = 'Train_hist.png'):
         plt.close()
 
 # training parameters
-batch_size = 100
+batch_size = 1
 # lr = 0.0002
 
-train_epoch = 100
+train_epoch = 1000
 global_step = tf.Variable(0, trainable=False)
 lr = tf.train.exponential_decay(0.0002, global_step, 500, 0.95, staircase=True)
 
