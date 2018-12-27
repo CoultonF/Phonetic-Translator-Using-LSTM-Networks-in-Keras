@@ -1,2 +1,0 @@
-word,ipa
-bout,baʊt
